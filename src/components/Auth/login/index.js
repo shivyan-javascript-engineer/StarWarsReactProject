@@ -1,36 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import styles from './login.module.scss';
 import Button from '../../Auxilary/Button/index';
+import { loginAPI } from '../../store/actions/index';
 
-function Login(){
-    const [username , setUserName] = useState('');
-    const [password , setPassword] = useState('');
+function Login(props) {
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        alert("submit");
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.loginAPI();
+  };
 
-    return  (
-        <div className={styles.loginContainer} >
-            <div className={styles.loginFormContainer} >
-                <form onSubmit={handleSubmit} >
-                    <label>Username</label>
-                    <br />
-                    <input placeholder="Yoda / Darth Vader" type="text" onChange={(e) => setUserName(e.target.value)} value={username} pattern="^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$" required/>
-                    <br />
-                    <label> Password</label>
-                    <br />
-                    <input placeholder="Secret Code" type="password" onChange={ (e) => setPassword(e.target.value)} value={password} required/>
-                    <br />
-                    <Button type="submit" label="Login" />
-                </form>
-            </div>
-        </div>
-    )
+
+  useEffect(() => {
+    props.loginAPI();
+  }, []);
+
+
+  return (
+    <div className={styles.loginContainer}>
+      <div className={styles.loginFormContainer}>
+        <form onSubmit={handleSubmit}>
+          <label>Username</label>
+          <br />
+          <input placeholder="Yoda / Darth Vader" type="text" onChange={(e) => setUserName(e.target.value)} value={username} required />
+          <br />
+          <label> Password</label>
+          <br />
+          <input placeholder="Secret Code" type="password" onChange={(e) => setPassword(e.target.value)} value={password} required />
+          <br />
+          <Button
+            style={{
+              display: 'flex',
+              alignSelf: 'center',
+              margin: '16px auto',
+            }}
+            type="submit"
+            label="Login"
+          />
+        </form>
+      </div>
+    </div>
+  );
 }
 
 
+Login.propTypes = {
+  loginAPI: PropTypes.func.isRequired,
+};
 
 
-export default Login;
+export default connect(null, { loginAPI })(Login);
