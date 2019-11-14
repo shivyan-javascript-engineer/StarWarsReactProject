@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import styles from './login.module.scss';
 import Button from '../../Auxilary/Button/index';
 import { loginAPI } from '../../store/actions/index';
@@ -8,17 +9,12 @@ import { loginAPI } from '../../store/actions/index';
 function Login(props) {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.loginAPI();
+    props.loginAPI(username, password, history.push);
   };
-
-
-  useEffect(() => {
-    props.loginAPI();
-  }, []);
-
 
   return (
     <div className={styles.loginContainer}>

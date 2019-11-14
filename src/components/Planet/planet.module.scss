@@ -1,0 +1,17 @@
+
+
+.planetsInfoContainer{
+
+    background-image: url('/cosmos.jpg');
+
+
+    .planetInfoList{
+        background: yellow;
+        font-size: large;
+        p {
+            &:hover {
+                font-size: xx-large;
+            }
+        }
+    }
+}

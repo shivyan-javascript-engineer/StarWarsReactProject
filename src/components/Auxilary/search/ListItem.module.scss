@@ -1,0 +1,21 @@
+li {
+    padding: 10px 10px;
+    border: 1px solid grey;
+    border-bottom: none;
+    transition: all 0.2s ease;
+    color: #211f1f;
+
+    &:last-child{
+        border-bottom: 1px solid grey;
+    }
+    
+    &:hover{
+        background: #1f395a;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+a {
+    text-decoration: none;
+}
