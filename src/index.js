@@ -4,6 +4,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import axios from 'axios';
 import * as serviceWorker from './serviceWorker';
 import reducers from './components/store/reducers';
 import Routes from './Routes/routes';
@@ -14,7 +15,13 @@ const store = createStore(reducers, {}, applyMiddleware(thunk));
 
 if (localStorage.getItem('token')) {
   store.dispatch({ type: IS_LOGGED_IN, payload: true });
+  axios.interceptors.request.use((config) => {
+    const token = localStorage.getItem('token');
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  });
 }
+
 // localStorage.getItem('token') && store.dispatch({ type: IS_LOGGED_IN, payload: true });
 
 ReactDOM.render(

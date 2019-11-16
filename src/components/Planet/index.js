@@ -8,11 +8,7 @@ export default function Planet(props) {
   const [planetInfo, setPlanetInfo] = useState('');
 
   useEffect(() => {
-    Axios.get(`${API_URL}/private/planets/${props.match.params.name}/item`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    })
+    Axios.get(`${API_URL}/private/planets/${props.match.params.name}/item`)
       .then((response) => {
         console.log(response.data.data);
         setPlanetInfo(response.data.data);
@@ -41,8 +37,10 @@ export default function Planet(props) {
 
   return (
     <div className={styles.planetsInfoContainer}>
-      {planetInfo ? (
-        renderPlanetInfo(planetInfo)) : <Loader loading />}
+      <div className={styles.planetDetailsContianer}>
+        {planetInfo ? (
+          renderPlanetInfo(planetInfo)) : <Loader loading />}
+      </div>
 
     </div>
   );
