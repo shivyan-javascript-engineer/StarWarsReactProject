@@ -3,19 +3,17 @@
 .planetsInfoContainer{
 
     background-image: url('/cosmos.jpg');
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-
-    .planetInfoList{
-        // background: yellow;
-        // font-size: large;
-        // p {
-        //     &:hover {
-        //         font-size: xx-large;
-        //     }
-        // }
-    }
 
     .planetDetailsContianer{
-        
+        background: #0a111f;
+        color: white;
+        padding: 5px 31px;
+        border-radius: 6px;
+        box-shadow: 0px 0px 7px 3px #008fff;
     }
 }

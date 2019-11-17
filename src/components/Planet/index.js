@@ -18,6 +18,9 @@ export default function Planet(props) {
       });
   }, []);
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   const renderPlanetInfo = (planetDetails) => {
     const keys = Object.keys(planetDetails);
@@ -25,7 +28,7 @@ export default function Planet(props) {
     return keys.map((planet) => (
       <div className={styles.planetInfoList} key={planetDetails[planet]}>
         <p>
-          {planet}
+          {capitalizeFirstLetter(planet)}
           {' '}
 :
           {' '}
@@ -34,6 +37,8 @@ export default function Planet(props) {
       </div>
     ));
   };
+  
+  
 
   return (
     <div className={styles.planetsInfoContainer}>
